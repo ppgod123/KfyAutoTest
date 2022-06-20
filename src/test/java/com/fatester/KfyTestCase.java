@@ -1,8 +1,7 @@
 package com.fatester;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -10,6 +9,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Duration;
@@ -24,7 +25,7 @@ public class KfyTestCase {
         webDriver= new ChromeDriver();
     }
     @Test(priority = 0)
-    public void Op_login() throws InterruptedException {
+    public void Op_login() throws InterruptedException, IOException {
         webDriver.manage().window().maximize();
         webDriver.get("http://dfh-user-facade.test.kfy.xip.io/sso/login#/");
         webDriver.findElement(By.id("account")).sendKeys("admin");
@@ -43,7 +44,8 @@ public class KfyTestCase {
                 .until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#root-master ul:nth-child(1) li:nth-child(6) li")));
         webElement2.click();
         Thread.sleep(3000);
-
+        File f = ((TakesScreenshot)webDriver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(f,new File(""));
 
 
     }

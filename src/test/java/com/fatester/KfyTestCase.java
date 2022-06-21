@@ -30,6 +30,7 @@ public class KfyTestCase {
         webDriver.get("http://dfh-user-facade.test.kfy.xip.io/sso/login#/");
         webDriver.findElement(By.id("account")).sendKeys("admin");
         webDriver.findElement(By.id("password")).sendKeys("szzj123456");
+        //点击脱敏管理
         webDriver.findElement(By.xpath("//*[@id=\"root\"]/div[2]/div/div/form/button/span")).click();
         //判断元素是否出现，必须所有符合条件的元素都加载出来，才通过
         WebElement webElement =  new WebDriverWait(webDriver, Duration.ofSeconds(10))
@@ -52,10 +53,7 @@ public class KfyTestCase {
     @Test(priority = 1)
     //数字越大优先级越低
     public void Op_TM() throws InterruptedException {
-        //webDriver.manage().window().maximize();
-        //webDriver.get("http://dfh-user-facade.test.kfy.xip.io/sso/login#/");
-        //webDriver.findElement(By.id("account")).sendKeys("admin");
-        //webDriver.findElement(By.id("password")).sendKeys("szzj123456");
+
         webDriver.findElement(By.xpath("//*[@id=\"root-master\"]/section/aside/div/ul/li[6]/div/span/span/span[2]")).click();
         Thread.sleep(5000);
 

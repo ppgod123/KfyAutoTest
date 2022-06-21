@@ -46,6 +46,7 @@ public class TestCase {
         Calendar cal = Calendar.getInstance();
                  cal.add(Calendar.DATE,20);
                  String Day = new SimpleDateFormat("yyyy-MM-dd").format(cal.getTime());
+        System.out.println(cal.getTime());
         System.out.println("当前日期"+Day);
     }
 

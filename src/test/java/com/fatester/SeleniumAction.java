@@ -20,8 +20,9 @@ public class SeleniumAction {
     public WebDriver webDriver;
     @BeforeClass
     public void Open_Kfy_Brower(){
-        Path p1=  Paths.get("src","drivers","chromedriver.exe");
-        System.setProperty("webdriver.chrome.driver",p1.toAbsolutePath().toString());
+//        Path p1=  Paths.get("src","drivers","chromedriver.exe");
+//        System.setProperty("webdriver.chrome.driver",p1.toAbsolutePath().toString());
+        System.setProperty("webdriver.chrome.driver","D:\\KfyAutoTest\\src\\drivers\\chromedriver.exe");
         //创建浏览器实例
         webDriver= new ChromeDriver();
     }
@@ -32,8 +33,9 @@ public class SeleniumAction {
         webDriver.get("http://dfh-user-facade.test.kfy.xip.io/sso/login#/");
         webDriver.findElement(By.id("account")).sendKeys("admin");
         webDriver.findElement(By.id("password")).sendKeys("szzj123456");
-        //点击脱敏管理
+        //点击登录控件
         webDriver.findElement(By.xpath("//*[@id=\"root\"]/div[2]/div/div/form/button/span")).click();
+        //点击脱敏管理
         //判断元素是否出现，必须所有符合条件的元素都加载出来，才通过
         WebElement webElement =  new WebDriverWait(webDriver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"root-master\"]/section/aside/div/ul/li[6]")));
@@ -145,7 +147,6 @@ public class SeleniumAction {
                 .until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[4]/div/div[2]/div/div[2]/div[3]/button[2]/span")));
         Edit_MD5_32_08.click();
         Thread.sleep(5000);
-
     }
     //脱敏规则上线
     @Test(priority = 3)
@@ -181,8 +182,30 @@ public class SeleniumAction {
         OFFline_MD5_32_03.click();
         Thread.sleep(3000);
     }
-    //脱敏规则删除
+    //查询脱敏规则
     @Test(priority = 5)
+    public void Select_MD5_32_Desensitization() throws InterruptedException {
+        //切换至Hash脱敏函数模块
+        WebElement Select_MD5_32_01 =  new WebDriverWait(webDriver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"rc-tabs-0-tab-crypt\"]")));
+        Select_MD5_32_01.click();
+        //列表数据加载成功，点击编辑查询规则名称
+        WebElement Select_MD5_32_02  =  new WebDriverWait(webDriver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"name\"]")));
+        Select_MD5_32_02.sendKeys("622");
+        //查询
+        WebElement Select_MD5_32_03 =  new WebDriverWait(webDriver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"rc-tabs-0-panel-crypt\"]/div/div[1]/form/div/span/button[1]/span")));
+        Select_MD5_32_03.click();
+        Thread.sleep(2000);
+        //重置
+        WebElement Select_MD5_32_04 =  new WebDriverWait(webDriver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"rc-tabs-0-panel-crypt\"]/div/div[1]/form/div/span/button[2]/span")));
+        Select_MD5_32_04.click();
+        Thread.sleep(2000);
+    }
+    //脱敏规则删除
+    @Test(priority = 6)
     public void Drop_MD5_32_Desensitization() throws InterruptedException {
         //切换至Hash脱敏函数模块
         WebElement Drop_MD5_32_01 =  new WebDriverWait(webDriver, Duration.ofSeconds(10))
@@ -200,6 +223,7 @@ public class SeleniumAction {
     }
     //关闭浏览器
     @AfterClass
+    //@Test(enabled = false)
     public void Close_Kfy_Brower(){
         webDriver.quit();
     }

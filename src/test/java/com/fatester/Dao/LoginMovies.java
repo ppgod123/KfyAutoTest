@@ -1,6 +1,6 @@
-package com.fatester;
+package com.fatester.Dao;
 
-import org.openqa.selenium.By;
+import com.fatester.pages.LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -11,10 +11,10 @@ import java.time.Duration;
 
 /**
  * 操作层
+ *
  */
 public class LoginMovies {
     public WebDriver driver;
-
     public LoginMovies(WebDriver driver) {
         this.driver = driver;
     }

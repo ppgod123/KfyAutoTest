@@ -1,5 +1,6 @@
-package com.fatester;
+package com.fatester.service;
 
+import com.fatester.Dao.LoginMovies;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
@@ -30,6 +31,16 @@ public class TestPageObject {
       LoginMovies loginMovies= new LoginMovies(driver);
         loginMovies.login("admin","aa66666","密码或账号不正确");
         loginMovies.login("admin","szzj123456","");
+    }
+
+    /**
+     * 脱敏函数
+     *
+     */
+    @Test
+    public void testDesensitization(){
+        System.out.println("脱敏管理");
+
     }
     @AfterClass
     public void Close_Kfy_Brower(){

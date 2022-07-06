@@ -1,6 +1,7 @@
 package com.fatester.service;
 
 import com.fatester.Dao.LoginMovies;
+import com.fatester.common.YmlUtil;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
@@ -28,9 +29,13 @@ public class TestPageObject {
      */
     @Test
     public void testLogin() throws InterruptedException {
-      LoginMovies loginMovies= new LoginMovies(driver);
-        loginMovies.login("admin","aa66666","密码或账号不正确");
-        loginMovies.login("admin","szzj123456","");
+        YmlUtil ymlUtil = new YmlUtil();
+        String username = ymlUtil.Read_Yaml().getOp().getUsername();
+        String password = ymlUtil.Read_Yaml().getOp().getPassword();
+        LoginMovies loginMovies= new LoginMovies(driver);
+        loginMovies.login(username,password,"");
+        //loginMovies.login("admin","aa66666","密码或账号不正确");
+
     }
 
     /**

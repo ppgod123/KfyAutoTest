@@ -2,6 +2,7 @@ package com.fatester.BaseClass;
 
 public class DatabaseConfig {
     private String driver;
+    private String ip;
     private Integer port;
     private String dbname;
     private String username;
@@ -11,6 +12,13 @@ public class DatabaseConfig {
     }
     public void setDriver(String driver) {
         this.driver = driver;
+    }
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
     }
     public Integer getPort() {
         return port;
@@ -38,7 +46,7 @@ public class DatabaseConfig {
     }
     @Override
     public String toString() {
-        return "\nDriver: " + driver + "\nport: "
+        return "\nDriver: " + driver +"\nip:"+ ip +"\nport: "
                 + port + "\ndbname: " + dbname
                 + "\nusername: " + username
                 + "\npassword: " + password + "\n";
